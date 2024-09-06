@@ -15,7 +15,7 @@ kernelspec:
 # Worldclim with MyST Markdown
 
 ```{code-cell} ipython3
-:tags: ["hide-cell"]
+:tags: ["remove-input"]
 import pandas as pd
 import cartopy.crs as ccrs
 import hvplot.xarray
@@ -24,7 +24,7 @@ import xarray as xr
 from bokeh.plotting import figure, show, output_notebook
 ```
 
-## Plot should go here 2
+## Plot should go here 3
 
 ```{code-cell} ipython3
 :tags: ["full-width"]
