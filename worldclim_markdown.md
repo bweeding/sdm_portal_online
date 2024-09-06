@@ -15,7 +15,7 @@ kernelspec:
 # Worldclim with MyST Markdown
 
 ```{code-cell} ipython3
-:tags: ["remove-cell"]
+:tags: ["hide-cell"]
 import pandas as pd
 import cartopy.crs as ccrs
 import hvplot.xarray
