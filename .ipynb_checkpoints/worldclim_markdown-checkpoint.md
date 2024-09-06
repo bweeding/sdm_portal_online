@@ -24,7 +24,7 @@ import xarray as xr
 from bokeh.plotting import figure, show, output_notebook
 ```
 
-## Plot should go here
+## Plot should go here 2
 
 ```{code-cell} ipython3
 :tags: ["full-width"]
