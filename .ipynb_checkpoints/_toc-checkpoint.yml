@@ -8,4 +8,6 @@ chapters:
   sections:
       - title: Elevation
         file: worldclim_0_ele
+      - title: Temperature metrics
+        file: worldclim_temperature
 
