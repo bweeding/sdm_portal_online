@@ -4,5 +4,8 @@
 format: jb-book
 root: intro
 chapters:
-- file: worldclim
+- file: worldclim_intro
+  sections:
+      - title: Elevation
+        file: worldclim_0_ele
 
