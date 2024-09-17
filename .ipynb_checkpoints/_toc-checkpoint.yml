@@ -10,4 +10,6 @@ chapters:
         file: worldclim_0_ele
       - title: Temperature metrics
         file: worldclim_temperature
+      - title: Precipitation metrics
+        file: worldclim_precipitation
 
