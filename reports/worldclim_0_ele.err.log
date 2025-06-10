@@ -26,6 +26,12 @@ import xarray as xr
 from bokeh.plotting import figure, show, output_notebook
 import bokeh
 
+# output_notebook()
+
+# https://github.com/the-turing-way/the-turing-way/blob/main/book/website/_toc.yml
+
+# copy file structure from book above to reduce html sizes!
+
 tiles_state=True
 
 # opens the target data as an xarray
