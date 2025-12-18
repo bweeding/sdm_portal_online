@@ -404,37 +404,17 @@ document.write(`
 <h1>Worldclim bioclimatic data<a class="headerlink" href="#worldclim-bioclimatic-data" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_full-width tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/xclim/lib/python3.13/site-packages/pyproj/network.py:59: UserWarning: pyproj unable to set PROJ database path.
-  _set_context_ca_bundle_path(ca_bundle_path)
-</pre></div>
-</div>
-<div class="output text_html"><script type="esms-options">{"shimMode": true}</script><style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(
-  > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style></div><script type="application/javascript">(function(root) {
+<script type="application/javascript">(function(root) {
   function now() {
     return new Date();
   }
 
-  const force = true;
-  const py_version = '3.8.1'.replace('rc', '-rc.').replace('.dev', '-dev.');
-  const reloading = false;
-  const Bokeh = root.Bokeh;
+  var force = true;
+  var py_version = '3.4.1'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var reloading = false;
+  var Bokeh = root.Bokeh;
 
-  // Set a timeout for this load but only if we are not already initializing
-  if (typeof (root._bokeh_timeout) === "undefined" || (force || !root._bokeh_is_initializing)) {
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
     root._bokeh_timeout = Date.now() + 5000;
     root._bokeh_failed_load = false;
   }
@@ -460,13 +440,15 @@ document.write(`
     root._bokeh_onload_callbacks.push(callback);
 
     if (root._bokeh_is_loading > 0) {
-      // Don't load bokeh if it is still initializing
       console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
       return null;
-    } else if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
-      // There is nothing to load
+    }
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
       run_callbacks();
       return null;
+    }
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
     }
 
     function on_load() {
@@ -478,12 +460,11 @@ document.write(`
     }
     window._bokeh_on_load = on_load
 
-    function on_error(e) {
-      const src_el = e.srcElement
-      console.error("failed to load " + (src_el.href || src_el.src));
+    function on_error() {
+      console.error("failed to load " + url);
     }
 
-    const skip = [];
+    var skip = [];
     if (window.requirejs) {
       window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
       root._bokeh_is_loading = css_urls.length + 0;
@@ -491,20 +472,19 @@ document.write(`
       root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
     }
 
-    const existing_stylesheets = []
-    const links = document.getElementsByTagName('link')
-    for (let i = 0; i < links.length; i++) {
-      const link = links[i]
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
       if (link.href != null) {
-        existing_stylesheets.push(link.href)
+	existing_stylesheets.push(link.href)
       }
     }
-    for (let i = 0; i < css_urls.length; i++) {
-      const url = css_urls[i];
-      const escaped = encodeURI(url)
-      if (existing_stylesheets.indexOf(escaped) !== -1) {
-        on_load()
-        continue;
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+	on_load()
+	continue;
       }
       const element = document.createElement("link");
       element.onload = on_load;
@@ -515,23 +495,22 @@ document.write(`
       console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
       document.body.appendChild(element);
     }    var existing_scripts = []
-    const scripts = document.getElementsByTagName('script')
-    for (let i = 0; i < scripts.length; i++) {
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
       var script = scripts[i]
       if (script.src != null) {
-        existing_scripts.push(script.src)
+	existing_scripts.push(script.src)
       }
     }
-    for (let i = 0; i < js_urls.length; i++) {
-      const url = js_urls[i];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
       }
-      const element = document.createElement('script');
+      var element = document.createElement('script');
       element.onload = on_load;
       element.onerror = on_error;
       element.async = false;
@@ -539,14 +518,13 @@ document.write(`
       console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
       document.head.appendChild(element);
     }
-    for (let i = 0; i < js_modules.length; i++) {
-      const url = js_modules[i];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
+    for (var i = 0; i < js_modules.length; i++) {
+      var url = js_modules[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
       }
       var element = document.createElement('script');
       element.onload = on_load;
@@ -558,13 +536,12 @@ document.write(`
       document.head.appendChild(element);
     }
     for (const name in js_exports) {
-      const url = js_exports[name];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) >= 0 || root[name] != null) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
       }
       var element = document.createElement('script');
       element.onerror = on_error;
@@ -589,11 +566,11 @@ document.write(`
     document.body.appendChild(element);
   }
 
-  const js_urls = ["https://cdn.holoviz.org/panel/1.8.3/dist/bundled/reactiveesm/es-module-shims@^1.10.0/dist/es-module-shims.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-3.8.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.8.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.8.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.8.1.min.js", "https://cdn.holoviz.org/panel/1.8.3/dist/panel.min.js"];
-  const js_modules = [];
-  const js_exports = {};
-  const css_urls = [];
-  const inline_js = [    function(Bokeh) {
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.4.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.1.min.js", "https://cdn.holoviz.org/panel/1.4.4/dist/panel.min.js"];
+  var js_modules = [];
+  var js_exports = {};
+  var css_urls = [];
+  var inline_js = [    function(Bokeh) {
       Bokeh.set_log_level("info");
     },
 function(Bokeh) {} // ensure no trailing comma for IE
@@ -601,27 +578,26 @@ function(Bokeh) {} // ensure no trailing comma for IE
 
   function run_inline_js() {
     if ((root.Bokeh !== undefined) || (force === true)) {
-      for (let i = 0; i < inline_js.length; i++) {
-        try {
+      for (var i = 0; i < inline_js.length; i++) {
+	try {
           inline_js[i].call(root, root.Bokeh);
-        } catch(e) {
-          if (!reloading) {
-            throw e;
-          }
-        }
+	} catch(e) {
+	  if (!reloading) {
+	    throw e;
+	  }
+	}
       }
       // Cache old bokeh versions
       if (Bokeh != undefined && !reloading) {
-        var NewBokeh = root.Bokeh;
-        if (Bokeh.versions === undefined) {
-          Bokeh.versions = new Map();
-        }
-        if (NewBokeh.version !== Bokeh.version) {
-          Bokeh.versions.set(NewBokeh.version, NewBokeh)
-        }
-        root.Bokeh = Bokeh;
-      }
-    } else if (Date.now() < root._bokeh_timeout) {
+	var NewBokeh = root.Bokeh;
+	if (Bokeh.versions === undefined) {
+	  Bokeh.versions = new Map();
+	}
+	if (NewBokeh.version !== Bokeh.version) {
+	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
+	}
+	root.Bokeh = Bokeh;
+      }} else if (Date.now() < root._bokeh_timeout) {
       setTimeout(run_inline_js, 100);
     } else if (!root._bokeh_failed_load) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
@@ -639,12 +615,8 @@ function(Bokeh) {} // ensure no trailing comma for IE
     // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
     // before older versions are fully initialized.
     if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
-      // If the timeout and bokeh was not successfully loaded we reset
-      // everything and try loading again
-      root._bokeh_timeout = Date.now() + 5000;
       root._bokeh_is_initializing = false;
       root._bokeh_onload_callbacks = undefined;
-      root._bokeh_is_loading = 0
       console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
       load_or_wait();
     } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
@@ -652,16 +624,13 @@ function(Bokeh) {} // ensure no trailing comma for IE
     } else {
       root._bokeh_is_initializing = true
       root._bokeh_onload_callbacks = []
-      const bokeh_loaded = root.Bokeh != null && (root.Bokeh.version === py_version || (root.Bokeh.versions !== undefined && root.Bokeh.versions.has(py_version)));
+      var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
       if (!reloading && !bokeh_loaded) {
-        if (root.Bokeh) {
-          root.Bokeh = undefined;
-        }
-        console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+	root.Bokeh = undefined;
       }
       load_libs(css_urls, js_urls, js_modules, js_exports, function() {
-        console.debug("Bokeh: BokehJS plotting callback run at", now());
-        run_inline_js();
+	console.debug("Bokeh: BokehJS plotting callback run at", now());
+	run_inline_js();
       });
     }
   }
@@ -692,6 +661,7 @@ if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
           var messages = comm.messages[Symbol.asyncIterator]();
           function processIteratorResult(result) {
             var message = result.value;
+            console.log(message)
             var content = {data: message.data, comm_id};
             var buffers = []
             for (var buffer of message.buffers || []) {
@@ -718,22 +688,7 @@ if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
         }
       } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
         var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        let retries = 0;
-        const open = () => {
-          if (comm.active) {
-            comm.open();
-          } else if (retries > 3) {
-            console.warn('Comm target never activated')
-          } else {
-            retries += 1
-            setTimeout(open, 500)
-          }
-        }
-        if (comm.active) {
-          comm.open();
-        } else {
-          setTimeout(open, 500)
-        }
+        comm.open();
         if (msg_handler) {
           comm.onMsg = msg_handler;
         }
@@ -753,7 +708,7 @@ if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
             }
             return messages.next().then(processIteratorResult);
           }
-        })
+        }) 
         var sendClosure = (data, metadata, buffers, disposeOnDone) => {
           return comm_promise.then((comm) => {
             comm.send(data, metadata, buffers, disposeOnDone);
@@ -921,12 +876,27 @@ if (window.Jupyter !== undefined) {
   } catch(err) {
   }
 }
-</script><div class="output text_html"><div id='d9fdb2e8-28f0-4435-b382-b2e67c3ea176'>
-  <div id="a2fabe78-2a58-4ca4-a144-bee68c75b779" data-root-id="d9fdb2e8-28f0-4435-b382-b2e67c3ea176" style="display: contents;"></div>
+</script><div class="output text_html"><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style></div><div class="output text_html"><div id='p1002'>
+  <div id="de7f9f93-aac8-44e7-9879-04de7704b020" data-root-id="p1002" style="display: contents;"></div>
 </div>
 <script type="application/javascript">(function(root) {
-  var docs_json = {"f1c42ef4-b04c-4b61-ba94-8b13208ca9cb":{"version":"3.8.1","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"953c1a16-af9a-4e38-82ee-ad9d84e895fc","attributes":{"notifications":{"type":"object","name":"Notifications","id":"18950b6c-c4d0-456e-9b36-8efacea23f7b"}}},"roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"d9fdb2e8-28f0-4435-b382-b2e67c3ea176"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"cd74fcb4-9e87-455a-89ce-7bfd07e6a3f2","attributes":{"plot_id":"d9fdb2e8-28f0-4435-b382-b2e67c3ea176","comm_id":"ebb57e6b91b543bf987a7bd43e49d29e","client_comm_id":"2a0a7cd0a21c413abe10c5d9a17857c9"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"holoviews.plotting.bokeh.raster.HoverModel","properties":[{"name":"xy","kind":"Any","default":null},{"name":"data","kind":"Any","default":null}]}]}};
-  var render_items = [{"docid":"f1c42ef4-b04c-4b61-ba94-8b13208ca9cb","roots":{"d9fdb2e8-28f0-4435-b382-b2e67c3ea176":"a2fabe78-2a58-4ca4-a144-bee68c75b779"},"root_ids":["d9fdb2e8-28f0-4435-b382-b2e67c3ea176"]}];
+  var docs_json = {"d1694485-4ee0-440e-8bb7-10ea521fb7cb":{"version":"3.4.1","title":"Bokeh Application","roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"p1002"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"p1003","attributes":{"plot_id":"p1002","comm_id":"57739cc3221642fbb215a3ad094c910a","client_comm_id":"45ca02dcb77e41f3aedd858f1ebd3325"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"copy_to_clipboard1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"value","kind":"Any","default":null}]}]}};
+  var render_items = [{"docid":"d1694485-4ee0-440e-8bb7-10ea521fb7cb","roots":{"p1002":"de7f9f93-aac8-44e7-9879-04de7704b020"},"root_ids":["p1002"]}];
   var docs = Object.values(docs_json)
   if (!docs) {
     return
@@ -990,532 +960,15 @@ if (window.Jupyter !== undefined) {
       }
     }, 25, root)
   }
-})(window);</script></div><div class="output text_html"><script type="esms-options">{"shimMode": true}</script><style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(
-  > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style></div><script type="application/javascript">(function(root) {
-  function now() {
-    return new Date();
-  }
-
-  const force = false;
-  const py_version = '3.8.1'.replace('rc', '-rc.').replace('.dev', '-dev.');
-  const reloading = true;
-  const Bokeh = root.Bokeh;
-
-  // Set a timeout for this load but only if we are not already initializing
-  if (typeof (root._bokeh_timeout) === "undefined" || (force || !root._bokeh_is_initializing)) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
-
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks;
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
-
-  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-    if (js_modules == null) js_modules = [];
-    if (js_exports == null) js_exports = {};
-
-    root._bokeh_onload_callbacks.push(callback);
-
-    if (root._bokeh_is_loading > 0) {
-      // Don't load bokeh if it is still initializing
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    } else if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
-      // There is nothing to load
-      run_callbacks();
-      return null;
-    }
-
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-    window._bokeh_on_load = on_load
-
-    function on_error(e) {
-      const src_el = e.srcElement
-      console.error("failed to load " + (src_el.href || src_el.src));
-    }
-
-    const skip = [];
-    if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
-      root._bokeh_is_loading = css_urls.length + 0;
-    } else {
-      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
-    }
-
-    const existing_stylesheets = []
-    const links = document.getElementsByTagName('link')
-    for (let i = 0; i < links.length; i++) {
-      const link = links[i]
-      if (link.href != null) {
-        existing_stylesheets.push(link.href)
-      }
-    }
-    for (let i = 0; i < css_urls.length; i++) {
-      const url = css_urls[i];
-      const escaped = encodeURI(url)
-      if (existing_stylesheets.indexOf(escaped) !== -1) {
-        on_load()
-        continue;
-      }
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }    var existing_scripts = []
-    const scripts = document.getElementsByTagName('script')
-    for (let i = 0; i < scripts.length; i++) {
-      var script = scripts[i]
-      if (script.src != null) {
-        existing_scripts.push(script.src)
-      }
-    }
-    for (let i = 0; i < js_urls.length; i++) {
-      const url = js_urls[i];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
-      }
-      const element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (let i = 0; i < js_modules.length; i++) {
-      const url = js_modules[i];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (const name in js_exports) {
-      const url = js_exports[name];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) >= 0 || root[name] != null) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
-      }
-      var element = document.createElement('script');
-      element.onerror = on_error;
-      element.async = false;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      element.textContent = `
-      import ${name} from "${url}"
-      window.${name} = ${name}
-      window._bokeh_on_load()
-      `
-      document.head.appendChild(element);
-    }
-    if (!js_urls.length && !js_modules.length) {
-      on_load()
-    }
-  };
-
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
-
-  const js_urls = ["https://cdn.holoviz.org/panel/1.8.3/dist/bundled/reactiveesm/es-module-shims@^1.10.0/dist/es-module-shims.min.js"];
-  const js_modules = [];
-  const js_exports = {};
-  const css_urls = [];
-  const inline_js = [    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-function(Bokeh) {} // ensure no trailing comma for IE
-  ];
-
-  function run_inline_js() {
-    if ((root.Bokeh !== undefined) || (force === true)) {
-      for (let i = 0; i < inline_js.length; i++) {
-        try {
-          inline_js[i].call(root, root.Bokeh);
-        } catch(e) {
-          if (!reloading) {
-            throw e;
-          }
-        }
-      }
-      // Cache old bokeh versions
-      if (Bokeh != undefined && !reloading) {
-        var NewBokeh = root.Bokeh;
-        if (Bokeh.versions === undefined) {
-          Bokeh.versions = new Map();
-        }
-        if (NewBokeh.version !== Bokeh.version) {
-          Bokeh.versions.set(NewBokeh.version, NewBokeh)
-        }
-        root.Bokeh = Bokeh;
-      }
-    } else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    }
-    root._bokeh_is_initializing = false
-  }
-
-  function load_or_wait() {
-    // Implement a backoff loop that tries to ensure we do not load multiple
-    // versions of Bokeh and its dependencies at the same time.
-    // In recent versions we use the root._bokeh_is_initializing flag
-    // to determine whether there is an ongoing attempt to initialize
-    // bokeh, however for backward compatibility we also try to ensure
-    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
-    // before older versions are fully initialized.
-    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
-      // If the timeout and bokeh was not successfully loaded we reset
-      // everything and try loading again
-      root._bokeh_timeout = Date.now() + 5000;
-      root._bokeh_is_initializing = false;
-      root._bokeh_onload_callbacks = undefined;
-      root._bokeh_is_loading = 0
-      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
-      load_or_wait();
-    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
-      setTimeout(load_or_wait, 100);
-    } else {
-      root._bokeh_is_initializing = true
-      root._bokeh_onload_callbacks = []
-      const bokeh_loaded = root.Bokeh != null && (root.Bokeh.version === py_version || (root.Bokeh.versions !== undefined && root.Bokeh.versions.has(py_version)));
-      if (!reloading && !bokeh_loaded) {
-        if (root.Bokeh) {
-          root.Bokeh = undefined;
-        }
-        console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-      }
-      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
-        console.debug("Bokeh: BokehJS plotting callback run at", now());
-        run_inline_js();
-      });
-    }
-  }
-  // Give older versions of the autoload script a head-start to ensure
-  // they initialize before we start loading newer version.
-  setTimeout(load_or_wait, 100)
-}(window));</script><script type="application/javascript">
-if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
-  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
-}
-
-
-    function JupyterCommManager() {
-    }
-
-    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
-      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        comm_manager.register_target(comm_id, function(comm) {
-          comm.on_msg(msg_handler);
-        });
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
-          comm.onMsg = msg_handler;
-        });
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
-          var messages = comm.messages[Symbol.asyncIterator]();
-          function processIteratorResult(result) {
-            var message = result.value;
-            var content = {data: message.data, comm_id};
-            var buffers = []
-            for (var buffer of message.buffers || []) {
-              buffers.push(new DataView(buffer))
-            }
-            var metadata = message.metadata || {};
-            var msg = {content, buffers, metadata}
-            msg_handler(msg);
-            return messages.next().then(processIteratorResult);
-          }
-          return messages.next().then(processIteratorResult);
-        })
-      }
-    }
-
-    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
-      if (comm_id in window.PyViz.comms) {
-        return window.PyViz.comms[comm_id];
-      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
-        if (msg_handler) {
-          comm.on_msg(msg_handler);
-        }
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        let retries = 0;
-        const open = () => {
-          if (comm.active) {
-            comm.open();
-          } else if (retries > 3) {
-            console.warn('Comm target never activated')
-          } else {
-            retries += 1
-            setTimeout(open, 500)
-          }
-        }
-        if (comm.active) {
-          comm.open();
-        } else {
-          setTimeout(open, 500)
-        }
-        if (msg_handler) {
-          comm.onMsg = msg_handler;
-        }
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        var comm_promise = google.colab.kernel.comms.open(comm_id)
-        comm_promise.then((comm) => {
-          window.PyViz.comms[comm_id] = comm;
-          if (msg_handler) {
-            var messages = comm.messages[Symbol.asyncIterator]();
-            function processIteratorResult(result) {
-              var message = result.value;
-              var content = {data: message.data};
-              var metadata = message.metadata || {comm_id};
-              var msg = {content, metadata}
-              msg_handler(msg);
-              return messages.next().then(processIteratorResult);
-            }
-            return messages.next().then(processIteratorResult);
-          }
-        })
-        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
-          return comm_promise.then((comm) => {
-            comm.send(data, metadata, buffers, disposeOnDone);
-          });
-        };
-        var comm = {
-          send: sendClosure
-        };
-      }
-      window.PyViz.comms[comm_id] = comm;
-      return comm;
-    }
-    window.PyViz.comm_manager = new JupyterCommManager();
-    
-
-
-var JS_MIME_TYPE = 'application/javascript';
-var HTML_MIME_TYPE = 'text/html';
-var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
-var CLASS_NAME = 'output';
-
-/**
- * Render data to the DOM node
- */
-function render(props, node) {
-  var div = document.createElement("div");
-  var script = document.createElement("script");
-  node.appendChild(div);
-  node.appendChild(script);
-}
-
-/**
- * Handle when a new output is added
- */
-function handle_add_output(event, handle) {
-  var output_area = handle.output_area;
-  var output = handle.output;
-  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-    return
-  }
-  var id = output.metadata[EXEC_MIME_TYPE]["id"];
-  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-  if (id !== undefined) {
-    var nchildren = toinsert.length;
-    var html_node = toinsert[nchildren-1].children[0];
-    html_node.innerHTML = output.data[HTML_MIME_TYPE];
-    var scripts = [];
-    var nodelist = html_node.querySelectorAll("script");
-    for (var i in nodelist) {
-      if (nodelist.hasOwnProperty(i)) {
-        scripts.push(nodelist[i])
-      }
-    }
-
-    scripts.forEach( function (oldScript) {
-      var newScript = document.createElement("script");
-      var attrs = [];
-      var nodemap = oldScript.attributes;
-      for (var j in nodemap) {
-        if (nodemap.hasOwnProperty(j)) {
-          attrs.push(nodemap[j])
-        }
-      }
-      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
-      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-    if (JS_MIME_TYPE in output.data) {
-      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
-    }
-    output_area._hv_plot_id = id;
-    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
-      window.PyViz.plot_index[id] = Bokeh.index[id];
-    } else {
-      window.PyViz.plot_index[id] = null;
-    }
-  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-    var bk_div = document.createElement("div");
-    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-    var script_attrs = bk_div.children[0].attributes;
-    for (var i = 0; i < script_attrs.length; i++) {
-      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
-    }
-    // store reference to server id on output_area
-    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-  }
-}
-
-/**
- * Handle when an output is cleared or removed
- */
-function handle_clear_output(event, handle) {
-  var id = handle.cell.output_area._hv_plot_id;
-  var server_id = handle.cell.output_area._bokeh_server_id;
-  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
-  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
-  if (server_id !== null) {
-    comm.send({event_type: 'server_delete', 'id': server_id});
-    return;
-  } else if (comm !== null) {
-    comm.send({event_type: 'delete', 'id': id});
-  }
-  delete PyViz.plot_index[id];
-  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
-    var doc = window.Bokeh.index[id].model.document
-    doc.clear();
-    const i = window.Bokeh.documents.indexOf(doc);
-    if (i > -1) {
-      window.Bokeh.documents.splice(i, 1);
-    }
-  }
-}
-
-/**
- * Handle kernel restart event
- */
-function handle_kernel_cleanup(event, handle) {
-  delete PyViz.comms["hv-extension-comm"];
-  window.PyViz.plot_index = {}
-}
-
-/**
- * Handle update_display_data messages
- */
-function handle_update_output(event, handle) {
-  handle_clear_output(event, {cell: {output_area: handle.output_area}})
-  handle_add_output(event, handle)
-}
-
-function register_renderer(events, OutputArea) {
-  function append_mime(data, metadata, element) {
-    // create a DOM node to render to
-    var toinsert = this.create_output_subarea(
-    metadata,
-    CLASS_NAME,
-    EXEC_MIME_TYPE
-    );
-    this.keyboard_manager.register_events(toinsert);
-    // Render to node
-    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-    render(props, toinsert[0]);
-    element.append(toinsert);
-    return toinsert
-  }
-
-  events.on('output_added.OutputArea', handle_add_output);
-  events.on('output_updated.OutputArea', handle_update_output);
-  events.on('clear_output.CodeCell', handle_clear_output);
-  events.on('delete.Cell', handle_clear_output);
-  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
-
-  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-    safe: true,
-    index: 0
-  });
-}
-
-if (window.Jupyter !== undefined) {
-  try {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  } catch(err) {
-  }
-}
-</script></div>
+})(window);</script></div></div>
 </div>
 <p>This page displays the worldclim elevation and bioclimatic data variables. The contents menu at the top right can be used to navigate the page. Information on the variables can be found at <a class="reference external" href="https://www.worldclim.org/data/bioclim.html">https://www.worldclim.org/data/bioclim.html</a>.</p>
 <section id="bio12-annual-precipitation-mm">
 <h2>BIO12: Annual precipitation (mm)<a class="headerlink" href="#bio12-annual-precipitation-mm" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input tag_full-width docutils container">
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2041876/855237526.py:9: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
-  ds.drop([&#39;band&#39;,&#39;spatial_ref&#39;]).hvplot(x=&#39;x&#39;,y=&#39;y&#39;,geo=True,xlim=(95,142), ylim=(-13,25),width=700,height=450,cmap=&#39;magma&#39;,xlabel=&#39;lon&#39;,tools=[hover],tiles=tiles_state,tiles_opts={&#39;xlim&#39;:xlims,&#39;ylim&#39;:ylims,&#39;alpha&#39;:0.5})
-</pre></div>
-</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span><span class="mi">180</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="o">-</span><span class="mi">60</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">hover</span> <span class="o">=</span> <span class="n">bokeh</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">HoverTool</span><span class="p">(</span><span class="n">tooltips</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;Temp&quot;</span><span class="p">,</span> <span class="s2">&quot;@image mm&quot;</span><span class="p">),</span>
@@ -1523,33 +976,54 @@ if (window.Jupyter !== undefined) {
 <span class="g g-Whitespace">      </span><span class="mi">7</span>                               <span class="n">formatters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;@Temp&quot;</span><span class="p">:</span><span class="s2">&quot;printf&quot;</span><span class="p">})</span>
 <span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">ds</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;band&#39;</span><span class="p">,</span><span class="s1">&#39;spatial_ref&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">geo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span><span class="mi">142</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span><span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">hover</span><span class="p">],</span><span class="n">tiles</span><span class="o">=</span><span class="n">tiles_state</span><span class="p">,</span><span class="n">tiles_opts</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xlim&#39;</span><span class="p">:</span><span class="n">xlims</span><span class="p">,</span><span class="s1">&#39;ylim&#39;</span><span class="p">:</span><span class="n">ylims</span><span class="p">,</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">})</span>
 
-<span class="nn">File /opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/plotting/core.py:95,</span> in <span class="ni">hvPlotBase.__call__</span><span class="nt">(self, x, y, kind, **kwds)</span>
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/hvplot/plotting/core.py:95,</span> in <span class="ni">hvPlotBase.__call__</span><span class="nt">(self, x, y, kind, **kwds)</span>
 <span class="g g-Whitespace">     </span><span class="mi">92</span>         <span class="n">plot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_converter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)(</span><span class="n">kind</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">93</span>         <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="o">**</span><span class="n">panel_dict</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">95</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_converter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)(</span><span class="n">kind</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="nn">File /opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/plotting/core.py:102,</span> in <span class="ni">hvPlotBase._get_converter</span><span class="nt">(self, x, y, kind, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="ow">or</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span> <span class="ow">or</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;kind&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">102</span> <span class="k">return</span> <span class="n">HoloViewsConverter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/hvplot/converter.py:1661,</span> in <span class="ni">HoloViewsConverter.__call__</span><span class="nt">(self, kind, x, y)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1658</span>                 <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1659</span>             <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">redim</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_redim</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1661</span>         <span class="n">obj</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1662</span>         <span class="n">obj</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+<span class="g g-Whitespace">   </span><span class="mi">1664</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1665</span>     <span class="c1"># Apply projection before rasterizing</span>
 
-<span class="nn">File /opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/converter.py:962,</span> in <span class="ni">HoloViewsConverter.__init__</span><span class="nt">(self, data, x, y, kind, by, use_index, group_label, value_label, backlog, persist, use_dask, crs, fields, groupby, dynamic, grid, legend, legend_cols, legend_opts, rot, title, xlim, ylim, clim, robust, symmetric, logx, logy, loglog, hover, hover_cols, hover_formatters, hover_tooltips, subplots, label, invert, stacked, colorbar, cticks, datashade, rasterize, downsample, resample_when, row, col, debug, framewise, aggregator, selector, projection, global_extent, geo, precompute, flip_xaxis, flip_yaxis, dynspread, x_sampling, y_sampling, pixel_ratio, project, toolbar, autohide_toolbar, tools, attr_labels, coastline, tiles, tiles_opts, sort_date, check_symmetric_max, transforms, stream, cnorm, features, rescale_discrete_levels, autorange, subcoordinate_y, backend_opts, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">960</span> <span class="c1"># Try importing geoviews if geo-features requested</span>
-<span class="g g-Whitespace">    </span><span class="mi">961</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">datatype</span> <span class="o">==</span> <span class="s1">&#39;geopandas&#39;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">962</span>     <span class="n">import_geoviews</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">964</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_crs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">crs</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span> <span class="k">else</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">965</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_projection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span>
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/hvplot/converter.py:2643,</span> in <span class="ni">HoloViewsConverter.image</span><span class="nt">(self, x, y, z, data)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2640</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2641</span>     <span class="n">params</span><span class="p">[</span><span class="s1">&#39;crs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span>
+<span class="g g-Whitespace">   </span><span class="mi">2642</span> <span class="k">return</span> <span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">2643</span>     <span class="n">element</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">z</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2644</span>     <span class="o">.</span><span class="n">redim</span><span class="p">(</span><span class="o">**</span><span class="n">redim</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2645</span>     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_backends_opts</span><span class="p">,</span> <span class="n">cur_opts</span><span class="o">=</span><span class="n">cur_opts</span><span class="p">,</span> <span class="n">compat_opts</span><span class="o">=</span><span class="n">compat_opts</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2646</span> <span class="p">)</span>
 
-<span class="nn">File /opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/util.py:818,</span> in <span class="ni">import_geoviews</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">816</span>     <span class="kn">import</span> <span class="nn">geoviews</span>
-<span class="g g-Whitespace">    </span><span class="mi">817</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">818</span>     <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">819</span>         <span class="s1">&#39;The `geoviews` package must be installed in order to use &#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">820</span>         <span class="s1">&#39;geographic features. Install it with pip or conda.&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">821</span>     <span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">822</span> <span class="k">return</span> <span class="n">geoviews</span>
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/geoviews/element/geo.py:120,</span> in <span class="ni">_Element.__init__</span><span class="nt">(self, data, kdims, vdims, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">_Element</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;crs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">crs</span>
+<span class="ne">--&gt; </span><span class="mi">120</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kdims</span><span class="o">=</span><span class="n">kdims</span><span class="p">,</span> <span class="n">vdims</span><span class="o">=</span><span class="n">vdims</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="ne">ModuleNotFoundError</span>: The `geoviews` package must be installed in order to use geographic features. Install it with pip or conda.
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/holoviews/element/raster.py:314,</span> in <span class="ni">Image.__init__</span><span class="nt">(self, data, kdims, vdims, bounds, extents, xdensity, ydensity, rtol, **params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="n">xdensity</span> <span class="o">=</span> <span class="n">xdensity</span> <span class="k">if</span> <span class="n">xdensity</span> <span class="k">else</span> <span class="n">util</span><span class="o">.</span><span class="n">compute_density</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dim1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_unit</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="n">ydensity</span> <span class="o">=</span> <span class="n">ydensity</span> <span class="k">if</span> <span class="n">ydensity</span> <span class="k">else</span> <span class="n">util</span><span class="o">.</span><span class="n">compute_density</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dim2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_unit</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">314</span> <span class="n">SheetCoordinateSystem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">xdensity</span><span class="p">,</span> <span class="n">ydensity</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="k">if</span> <span class="n">non_finite</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>    <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">BoundingBox</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)))</span>
+
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/holoviews/core/sheetcoords.py:166,</span> in <span class="ni">SheetCoordinateSystem.__init__</span><span class="nt">(self, bounds, xdensity, ydensity)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="bp">self</span><span class="o">.</span><span class="n">__set_ydensity</span><span class="p">(</span><span class="n">ydensity</span> <span class="ow">or</span> <span class="n">xdensity</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbrt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">())</span>
+<span class="ne">--&gt; </span><span class="mi">166</span> <span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="p">,</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span> <span class="o">=</span> <span class="n">Slice</span><span class="o">.</span><span class="n">_boundsspec2slicespec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lbrt</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="bp">self</span><span class="o">.</span><span class="n">__shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">r2</span><span class="o">-</span><span class="n">r1</span><span class="p">,</span><span class="n">c2</span><span class="o">-</span><span class="n">c1</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/aciar/lib/python3.11/site-packages/holoviews/core/sheetcoords.py:519,</span> in <span class="ni">Slice._boundsspec2slicespec</span><span class="nt">(boundsspec, scs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">516</span> <span class="n">b_m</span><span class="p">,</span><span class="n">r_m</span> <span class="o">=</span> <span class="n">scs</span><span class="o">.</span><span class="n">sheet2matrix</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span> <span class="n">l_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">l_m</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">519</span> <span class="n">t_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">t_m</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span> <span class="n">r_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">r_m</span><span class="o">+</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="n">b_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">b_m</span><span class="o">+</span><span class="mf">0.5</span><span class="p">))</span>
+
+<span class="ne">ValueError</span>: cannot convert float NaN to integer
 </pre></div>
 </div>
 </div>
@@ -1601,16 +1075,16 @@ if (window.Jupyter !== undefined) {
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "xclim"
+            mode: "aciar"
         },
         kernelOptions: {
-            name: "xclim",
+            name: "aciar",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'xclim'</script>
+    <script>kernelName = 'aciar'</script>
 
                 </article>
               

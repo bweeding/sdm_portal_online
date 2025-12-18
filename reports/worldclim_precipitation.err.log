@@ -29,45 +29,62 @@ hover = bokeh.models.HoverTool(tooltips=[("Temp", "@image mm"),
 ds.drop(['band','spatial_ref']).hvplot(x='x',y='y',geo=True,xlim=(95,142), ylim=(-13,25),width=700,height=450,cmap='magma',xlabel='lon',tools=[hover],tiles=tiles_state,tiles_opts={'xlim':xlims,'ylim':ylims,'alpha':0.5})
 ------------------
 
------ stderr -----
-/tmp/ipykernel_2041876/855237526.py:9: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
-  ds.drop(['band','spatial_ref']).hvplot(x='x',y='y',geo=True,xlim=(95,142), ylim=(-13,25),width=700,height=450,cmap='magma',xlabel='lon',tools=[hover],tiles=tiles_state,tiles_opts={'xlim':xlims,'ylim':ylims,'alpha':0.5})
-------------------
 
-[31m---------------------------------------------------------------------------[39m
-[31mModuleNotFoundError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 9[39m
-[32m      3[39m ds = ds.sel(x=[38;5;28mslice[39m([32m45[39m,[32m180[39m),y=[38;5;28mslice[39m([32m60[39m,-[32m60[39m))
-[32m      5[39m hover = bokeh.models.HoverTool(tooltips=[([33m"[39m[33mTemp[39m[33m"[39m, [33m"[39m[33m@image mm[39m[33m"[39m),
-[32m      6[39m                                   ],
-[32m      7[39m                               formatters = {[33m"[39m[33m@Temp[39m[33m"[39m:[33m"[39m[33mprintf[39m[33m"[39m})
-[32m----> [39m[32m9[39m [43mds[49m[43m.[49m[43mdrop[49m[43m([49m[43m[[49m[33;43m'[39;49m[33;43mband[39;49m[33;43m'[39;49m[43m,[49m[33;43m'[39;49m[33;43mspatial_ref[39;49m[33;43m'[39;49m[43m][49m[43m)[49m[43m.[49m[43mhvplot[49m[43m([49m[43mx[49m[43m=[49m[33;43m'[39;49m[33;43mx[39;49m[33;43m'[39;49m[43m,[49m[43my[49m[43m=[49m[33;43m'[39;49m[33;43my[39;49m[33;43m'[39;49m[43m,[49m[43mgeo[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43mxlim[49m[43m=[49m[43m([49m[32;43m95[39;49m[43m,[49m[32;43m142[39;49m[43m)[49m[43m,[49m[43m [49m[43mylim[49m[43m=[49m[43m([49m[43m-[49m[32;43m13[39;49m[43m,[49m[32;43m25[39;49m[43m)[49m[43m,[49m[43mwidth[49m[43m=[49m[32;43m700[39;49m[43m,[49m[43mheight[49m[43m=[49m[32;43m450[39;49m[43m,[49m[43mcmap[49m[43m=[49m[33;43m'[39;49m[33;43mmagma[39;49m[33;43m'[39;49m[43m,[49m[43mxlabel[49m[43m=[49m[33;43m'[39;49m[33;43mlon[39;49m[33;43m'[39;49m[43m,[49m[43mtools[49m[43m=[49m[43m[[49m[43mhover[49m[43m][49m[43m,[49m[43mtiles[49m[43m=[49m[43mtiles_state[49m[43m,[49m[43mtiles_opts[49m[43m=[49m[43m{[49m[33;43m'[39;49m[33;43mxlim[39;49m[33;43m'[39;49m[43m:[49m[43mxlims[49m[43m,[49m[33;43m'[39;49m[33;43mylim[39;49m[33;43m'[39;49m[43m:[49m[43mylims[49m[43m,[49m[33;43m'[39;49m[33;43malpha[39;49m[33;43m'[39;49m[43m:[49m[32;43m0.5[39;49m[43m}[49m[43m)[49m
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[2], line 9[0m
+[1;32m      3[0m ds [38;5;241m=[39m ds[38;5;241m.[39msel(x[38;5;241m=[39m[38;5;28mslice[39m([38;5;241m45[39m,[38;5;241m180[39m),y[38;5;241m=[39m[38;5;28mslice[39m([38;5;241m60[39m,[38;5;241m-[39m[38;5;241m60[39m))
+[1;32m      5[0m hover [38;5;241m=[39m bokeh[38;5;241m.[39mmodels[38;5;241m.[39mHoverTool(tooltips[38;5;241m=[39m[([38;5;124m"[39m[38;5;124mTemp[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m@image mm[39m[38;5;124m"[39m),
+[1;32m      6[0m                                   ],
+[1;32m      7[0m                               formatters [38;5;241m=[39m {[38;5;124m"[39m[38;5;124m@Temp[39m[38;5;124m"[39m:[38;5;124m"[39m[38;5;124mprintf[39m[38;5;124m"[39m})
+[0;32m----> 9[0m [43mds[49m[38;5;241;43m.[39;49m[43mdrop[49m[43m([49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mband[39;49m[38;5;124;43m'[39;49m[43m,[49m[38;5;124;43m'[39;49m[38;5;124;43mspatial_ref[39;49m[38;5;124;43m'[39;49m[43m][49m[43m)[49m[38;5;241;43m.[39;49m[43mhvplot[49m[43m([49m[43mx[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mx[39;49m[38;5;124;43m'[39;49m[43m,[49m[43my[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43my[39;49m[38;5;124;43m'[39;49m[43m,[49m[43mgeo[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43mxlim[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m95[39;49m[43m,[49m[38;5;241;43m142[39;49m[43m)[49m[43m,[49m[43m [49m[43mylim[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m-[39;49m[38;5;241;43m13[39;49m[43m,[49m[38;5;241;43m25[39;49m[43m)[49m[43m,[49m[43mwidth[49m[38;5;241;43m=[39;49m[38;5;241;43m700[39;49m[43m,[49m[43mheight[49m[38;5;241;43m=[39;49m[38;5;241;43m450[39;49m[43m,[49m[43mcmap[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mmagma[39;49m[38;5;124;43m'[39;49m[43m,[49m[43mxlabel[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mlon[39;49m[38;5;124;43m'[39;49m[43m,[49m[43mtools[49m[38;5;241;43m=[39;49m[43m[[49m[43mhover[49m[43m][49m[43m,[49m[43mtiles[49m[38;5;241;43m=[39;49m[43mtiles_state[49m[43m,[49m[43mtiles_opts[49m[38;5;241;43m=[39;49m[43m{[49m[38;5;124;43m'[39;49m[38;5;124;43mxlim[39;49m[38;5;124;43m'[39;49m[43m:[49m[43mxlims[49m[43m,[49m[38;5;124;43m'[39;49m[38;5;124;43mylim[39;49m[38;5;124;43m'[39;49m[43m:[49m[43mylims[49m[43m,[49m[38;5;124;43m'[39;49m[38;5;124;43malpha[39;49m[38;5;124;43m'[39;49m[43m:[49m[38;5;241;43m0.5[39;49m[43m}[49m[43m)[49m
 
-[36mFile [39m[32m/opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/plotting/core.py:95[39m, in [36mhvPlotBase.__call__[39m[34m(self, x, y, kind, **kwds)[39m
-[32m     92[39m         plot = [38;5;28mself[39m._get_converter(x, y, kind, **kwds)(kind, x, y)
-[32m     93[39m         [38;5;28;01mreturn[39;00m pn.panel(plot, **panel_dict)
-[32m---> [39m[32m95[39m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_get_converter[49m[43m([49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43mkind[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwds[49m[43m)[49m(kind, x, y)
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/hvplot/plotting/core.py:95[0m, in [0;36mhvPlotBase.__call__[0;34m(self, x, y, kind, **kwds)[0m
+[1;32m     92[0m         plot [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_get_converter(x, y, kind, [38;5;241m*[39m[38;5;241m*[39mkwds)(kind, x, y)
+[1;32m     93[0m         [38;5;28;01mreturn[39;00m pn[38;5;241m.[39mpanel(plot, [38;5;241m*[39m[38;5;241m*[39mpanel_dict)
+[0;32m---> 95[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_converter[49m[43m([49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43mkind[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m[43m([49m[43mkind[49m[43m,[49m[43m [49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m)[49m
 
-[36mFile [39m[32m/opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/plotting/core.py:102[39m, in [36mhvPlotBase._get_converter[39m[34m(self, x, y, kind, **kwds)[39m
-[32m    100[39m y = y [38;5;129;01mor[39;00m params.pop([33m'[39m[33my[39m[33m'[39m, [38;5;28;01mNone[39;00m)
-[32m    101[39m kind = kind [38;5;129;01mor[39;00m params.pop([33m'[39m[33mkind[39m[33m'[39m, [38;5;28;01mNone[39;00m)
-[32m--> [39m[32m102[39m [38;5;28;01mreturn[39;00m [43mHoloViewsConverter[49m[43m([49m[38;5;28;43mself[39;49m[43m.[49m[43m_data[49m[43m,[49m[43m [49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43mkind[49m[43m=[49m[43mkind[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mparams[49m[43m)[49m
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/hvplot/converter.py:1661[0m, in [0;36mHoloViewsConverter.__call__[0;34m(self, kind, x, y)[0m
+[1;32m   1658[0m                 dataset [38;5;241m=[39m Dataset(data)
+[1;32m   1659[0m             dataset [38;5;241m=[39m dataset[38;5;241m.[39mredim([38;5;241m*[39m[38;5;241m*[39m[38;5;28mself[39m[38;5;241m.[39m_redim)
+[0;32m-> 1661[0m         obj [38;5;241m=[39m [43mmethod[49m[43m([49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m)[49m
+[1;32m   1662[0m         obj[38;5;241m.[39m_dataset [38;5;241m=[39m dataset
+[1;32m   1664[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mcrs [38;5;129;01mand[39;00m [38;5;28mself[39m[38;5;241m.[39mproject:
+[1;32m   1665[0m     [38;5;66;03m# Apply projection before rasterizing[39;00m
 
-[36mFile [39m[32m/opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/converter.py:962[39m, in [36mHoloViewsConverter.__init__[39m[34m(self, data, x, y, kind, by, use_index, group_label, value_label, backlog, persist, use_dask, crs, fields, groupby, dynamic, grid, legend, legend_cols, legend_opts, rot, title, xlim, ylim, clim, robust, symmetric, logx, logy, loglog, hover, hover_cols, hover_formatters, hover_tooltips, subplots, label, invert, stacked, colorbar, cticks, datashade, rasterize, downsample, resample_when, row, col, debug, framewise, aggregator, selector, projection, global_extent, geo, precompute, flip_xaxis, flip_yaxis, dynspread, x_sampling, y_sampling, pixel_ratio, project, toolbar, autohide_toolbar, tools, attr_labels, coastline, tiles, tiles_opts, sort_date, check_symmetric_max, transforms, stream, cnorm, features, rescale_discrete_levels, autorange, subcoordinate_y, backend_opts, **kwds)[39m
-[32m    960[39m [38;5;66;03m# Try importing geoviews if geo-features requested[39;00m
-[32m    961[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.geo [38;5;129;01mor[39;00m [38;5;28mself[39m.datatype == [33m'[39m[33mgeopandas[39m[33m'[39m:
-[32m--> [39m[32m962[39m     [43mimport_geoviews[49m[43m([49m[43m)[49m
-[32m    964[39m [38;5;28mself[39m.crs = [38;5;28mself[39m._process_crs(data, crs) [38;5;28;01mif[39;00m [38;5;28mself[39m.geo [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m
-[32m    965[39m [38;5;28mself[39m.output_projection = [38;5;28mself[39m.crs
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/hvplot/converter.py:2643[0m, in [0;36mHoloViewsConverter.image[0;34m(self, x, y, z, data)[0m
+[1;32m   2640[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mgeo:
+[1;32m   2641[0m     params[[38;5;124m'[39m[38;5;124mcrs[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mcrs
+[1;32m   2642[0m [38;5;28;01mreturn[39;00m (
+[0;32m-> 2643[0m     [43melement[49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43m[[49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m][49m[43m,[49m[43m [49m[43mz[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+[1;32m   2644[0m     [38;5;241m.[39mredim([38;5;241m*[39m[38;5;241m*[39mredim)
+[1;32m   2645[0m     [38;5;241m.[39mapply([38;5;28mself[39m[38;5;241m.[39m_set_backends_opts, cur_opts[38;5;241m=[39mcur_opts, compat_opts[38;5;241m=[39mcompat_opts)
+[1;32m   2646[0m )
 
-[36mFile [39m[32m/opt/anaconda3/envs/xclim/lib/python3.13/site-packages/hvplot/util.py:818[39m, in [36mimport_geoviews[39m[34m()[39m
-[32m    816[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mgeoviews[39;00m
-[32m    817[39m [38;5;28;01mexcept[39;00m [38;5;167;01mModuleNotFoundError[39;00m:
-[32m--> [39m[32m818[39m     [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
-[32m    819[39m         [33m'[39m[33mThe `geoviews` package must be installed in order to use [39m[33m'[39m
-[32m    820[39m         [33m'[39m[33mgeographic features. Install it with pip or conda.[39m[33m'[39m
-[32m    821[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
-[32m    822[39m [38;5;28;01mreturn[39;00m geoviews
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/geoviews/element/geo.py:120[0m, in [0;36m_Element.__init__[0;34m(self, data, kdims, vdims, **kwargs)[0m
+[1;32m    118[0m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(data, _Element):
+[1;32m    119[0m     kwargs[[38;5;124m'[39m[38;5;124mcrs[39m[38;5;124m'[39m] [38;5;241m=[39m data[38;5;241m.[39mcrs
+[0;32m--> 120[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43mkdims[49m[38;5;241;43m=[39;49m[43mkdims[49m[43m,[49m[43m [49m[43mvdims[49m[38;5;241;43m=[39;49m[43mvdims[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
 
-[31mModuleNotFoundError[39m: The `geoviews` package must be installed in order to use geographic features. Install it with pip or conda.
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/holoviews/element/raster.py:314[0m, in [0;36mImage.__init__[0;34m(self, data, kdims, vdims, bounds, extents, xdensity, ydensity, rtol, **params)[0m
+[1;32m    312[0m     xdensity [38;5;241m=[39m xdensity [38;5;28;01mif[39;00m xdensity [38;5;28;01melse[39;00m util[38;5;241m.[39mcompute_density(l, r, dim1, [38;5;28mself[39m[38;5;241m.[39m_time_unit)
+[1;32m    313[0m     ydensity [38;5;241m=[39m ydensity [38;5;28;01mif[39;00m ydensity [38;5;28;01melse[39;00m util[38;5;241m.[39mcompute_density(b, t, dim2, [38;5;28mself[39m[38;5;241m.[39m_time_unit)
+[0;32m--> 314[0m [43mSheetCoordinateSystem[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mbounds[49m[43m,[49m[43m [49m[43mxdensity[49m[43m,[49m[43m [49m[43mydensity[49m[43m)[49m
+[1;32m    315[0m [38;5;28;01mif[39;00m non_finite:
+[1;32m    316[0m    [38;5;28mself[39m[38;5;241m.[39mbounds [38;5;241m=[39m BoundingBox(points[38;5;241m=[39m((np[38;5;241m.[39mnan, np[38;5;241m.[39mnan), (np[38;5;241m.[39mnan, np[38;5;241m.[39mnan)))
+
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/holoviews/core/sheetcoords.py:166[0m, in [0;36mSheetCoordinateSystem.__init__[0;34m(self, bounds, xdensity, ydensity)[0m
+[1;32m    162[0m [38;5;28mself[39m[38;5;241m.[39m__set_ydensity(ydensity [38;5;129;01mor[39;00m xdensity)
+[1;32m    164[0m [38;5;28mself[39m[38;5;241m.[39mlbrt [38;5;241m=[39m np[38;5;241m.[39marray(bounds[38;5;241m.[39mlbrt())
+[0;32m--> 166[0m r1,r2,c1,c2 [38;5;241m=[39m [43mSlice[49m[38;5;241;43m.[39;49m[43m_boundsspec2slicespec[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mlbrt[49m[43m,[49m[38;5;28;43mself[39;49m[43m)[49m
+[1;32m    167[0m [38;5;28mself[39m[38;5;241m.[39m__shape [38;5;241m=[39m (r2[38;5;241m-[39mr1,c2[38;5;241m-[39mc1)
+
+File [0;32m/opt/anaconda3/envs/aciar/lib/python3.11/site-packages/holoviews/core/sheetcoords.py:519[0m, in [0;36mSlice._boundsspec2slicespec[0;34m(boundsspec, scs)[0m
+[1;32m    516[0m b_m,r_m [38;5;241m=[39m scs[38;5;241m.[39msheet2matrix(r,b)
+[1;32m    518[0m l_idx [38;5;241m=[39m [38;5;28mint[39m(np[38;5;241m.[39mceil(l_m[38;5;241m-[39m[38;5;241m0.5[39m))
+[0;32m--> 519[0m t_idx [38;5;241m=[39m [38;5;28;43mint[39;49m[43m([49m[43mnp[49m[38;5;241;43m.[39;49m[43mceil[49m[43m([49m[43mt_m[49m[38;5;241;43m-[39;49m[38;5;241;43m0.5[39;49m[43m)[49m[43m)[49m
+[1;32m    520[0m r_idx [38;5;241m=[39m [38;5;28mint[39m(np[38;5;241m.[39mfloor(r_m[38;5;241m+[39m[38;5;241m0.5[39m))
+[1;32m    521[0m b_idx [38;5;241m=[39m [38;5;28mint[39m(np[38;5;241m.[39mfloor(b_m[38;5;241m+[39m[38;5;241m0.5[39m))
+
+[0;31mValueError[0m: cannot convert float NaN to integer
 
