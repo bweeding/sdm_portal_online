@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>References &#8212; SDM portal</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Leptocybe invasa case study" href="leptocybe-invasa_point_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/sea_logo.jpg" class="logo__image only-light" alt="SDM portal - Home"/>
+    <script>document.write(`<img src="_static/sea_logo.jpg" class="logo__image only-dark" alt="SDM portal - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to the ACIAR Species Distribution Modelling portal.
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="worldclim_0_ele.html">Elevation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="bioclim_intro.html">Historical bioclimatic variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bioclim_temperature.html">Temperature variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bioclim_precipitation.html">Precipitation variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="bioclim_proj_intro.html">Projected bioclimatic variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bioclim_temp_projections.html">Temperature variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bioclim_precip_projections.html">Precipitation variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="leptocybe-invasa_point_data.html">Leptocybe invasa case study</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Freferences.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/references.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>References</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
+<p>Anderson, C.B., 2023. elapid: Species distribution modeling tools forPython. J. Open Source Softw. 8, 4930. <a class="reference external" href="https://doi.org/10.21105/joss.04930">https://doi.org/10.21105/joss.04930</a></p>
+<p>Beery, S., Cole, E., Parker, J., Perona, P., Winner, K., 2021. Species Distribution Modeling for Machine Learning Practitioners: A Review, in: Proceedings of the 4th ACM SIGCAS Conference on Computing and Sustainable Societies, COMPASS ’21. Association for Computing Machinery, New York, NY, USA, pp. 329–348. <a class="reference external" href="https://doi.org/10.1145/3460112.3471966">https://doi.org/10.1145/3460112.3471966</a></p>
+<p>Booth, T.H., 2022. Checking bioclimatic variables that combine temperature and precipitation data before their use in species distribution models. Austral Ecol. 47, 1506–1514. <a class="reference external" href="https://doi.org/10.1111/aec.13234">https://doi.org/10.1111/aec.13234</a></p>
+<p>Booth, T.H., Nix, H.A., Busby, J.R., Hutchinson, M.F., 2014. bioclim: the first species distribution modelling package, its early applications and relevance to most current MaxEnt studies. Divers. Distrib. 20, 1–9. <a class="reference external" href="https://doi.org/10.1111/ddi.12144">https://doi.org/10.1111/ddi.12144</a></p>
+<p>Cannon, A.J., Sobie, S.R., Murdock, T.Q., 2015. Bias Correction of GCM Precipitation by Quantile Mapping: How Well Do Methods Preserve Changes in Quantiles and Extremes? J. Clim. 28, 6938–6959. <a class="reference external" href="https://doi.org/10.1175/JCLI-D-14-00754.1">https://doi.org/10.1175/JCLI-D-14-00754.1</a></p>
+<p>Elith, J., Leathwick, J.R., 2009. Species Distribution Models: Ecological Explanation and Prediction Across Space and Time. Annu. Rev. Ecol. Evol. Syst. 40, 677–697. <a class="reference external" href="https://doi.org/10.1146/annurev.ecolsys.110308.120159">https://doi.org/10.1146/annurev.ecolsys.110308.120159</a></p>
+<p>Elith, J., Phillips, S.J., Hastie, T., Dudík, M., Chee, Y.E., Yates, C.J., 2011. A statistical explanation of MaxEnt for ecologists: Statistical explanation of MaxEnt. Divers. Distrib. 17, 43–57. <a class="reference external" href="https://doi.org/10.1111/j.1472-4642.2010.00725.x">https://doi.org/10.1111/j.1472-4642.2010.00725.x</a></p>
+<p>Fick, S.E., Hijmans, R.J., 2017. WorldClim 2: new 1-km spatial resolution climate surfaces for global land areas. Int. J. Climatol. 37, 4302–4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a></p>
+<p>Franklin, J., 2023. Species distribution modelling supports the study of past, present and future biogeographies. J. Biogeogr. 50, 1533–1545. <a class="reference external" href="https://doi.org/10.1111/jbi.14617">https://doi.org/10.1111/jbi.14617</a></p>
+<p>Kumar, A., Sangha, K.S., Dhillon, G.P.S., 2015. Screening of 19 genotypes of Eucalyptus spp. against gall wasp (Leptocybe invasa) in North-western India. Springer 26. <a class="reference external" href="https://doi.org/10.1007/s11676-015-0052-x">https://doi.org/10.1007/s11676-015-0052-x</a></p>
+<p>Mendel, Z., Protasov, A., Fisher, N., La Salle, J., 2004. Taxonomy and biology of Leptocybe invasa gen. &amp; sp. n. (Hymenoptera: Eulophidae), an invasive gall inducer on Eucalyptus. ResearchGate 43, 101–113. <a class="reference external" href="https://doi.org/10.1111/j.1440-6055.2003.00393.x">https://doi.org/10.1111/j.1440-6055.2003.00393.x</a></p>
+<p>Muñoz-Sabater, J., Dutra, E., Agustí-Panareda, A., Albergel, C., Arduini, G., Balsamo, G., Boussetta, S., Choulga, M., Harrigan, S., Hersbach, H., Martens, B., Miralles, D.G., Piles, M., Rodríguez-Fernández, N.J., Zsoter, E., Buontempo, C., Thépaut, J.-N., 2021. ERA5-Land: a state-of-the-art global reanalysis dataset for land applications. Earth Syst. Sci. Data 13, 4349–4383. <a class="reference external" href="https://doi.org/10.5194/essd-13-4349-2021">https://doi.org/10.5194/essd-13-4349-2021</a></p>
+<p>Nugnes, F., 2017. Leptocybe invasa (blue gum chalcid). CABI Compend. CABI Compendium, 108923. <a class="reference external" href="https://doi.org/10.1079/cabicompendium.108923">https://doi.org/10.1079/cabicompendium.108923</a></p>
+<p>Nugnes, F., Gebiola, M., Monti, M.M., Gualtieri, L., Giorgini, M., Wang, J., Bernardo, U., 2015. Genetic Diversity of the Invasive Gall Wasp Leptocybe invasa (Hymenoptera: Eulophidae) and of its Rickettsia Endosymbiont, and Associated Sex-Ratio Differences. PLOS ONE 10, e0124660. <a class="reference external" href="https://doi.org/10.1371/journal.pone.0124660">https://doi.org/10.1371/journal.pone.0124660</a></p>
+<p>Phillips, S.J., Anderson, R.P., Dudík, M., Schapire, R.E., Blair, M.E., 2017. Opening the black box: an open-source release of Maxent. Ecography 40, 887–893. <a class="reference external" href="https://doi.org/10.1111/ecog.03049">https://doi.org/10.1111/ecog.03049</a></p>
+<p>Phillips, S.J., Anderson, R.P., Schapire, R.E., 2006. Maximum entropy modeling of species geographic distributions. Ecol. Model. 190, 231–259. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.03.026">https://doi.org/10.1016/j.ecolmodel.2005.03.026</a></p>
+<p>Phillips, S.J., Dudík, M., 2008. Modeling of species distributions with Maxent: new extensions and a comprehensive evaluation. Ecography 31, 161–175. <a class="reference external" href="https://doi.org/10.1111/j.0906-7590.2008.5203.x">https://doi.org/10.1111/j.0906-7590.2008.5203.x</a></p>
+<p>Puspasari, L.T., Buchori, D., Ubaidillah, R., Triwidodo, H., Hidayat, P., 2020. New Record of Leptocybe invasa Fisher and La Salle (Hymenoptera: Eulophidae) on the White Gum in Timor Tengah Selatan District, East Nusa Tenggara Province, Indonesia. Presented at the International Conference and the 10th Congress of the Entomological Society of Indonesia (ICCESI 2019), Atlantis Press, pp. 138–142. <a class="reference external" href="https://doi.org/10.2991/absr.k.200513.024">https://doi.org/10.2991/absr.k.200513.024</a></p>
+<p>Sangtongpraow, B., Charernsom, K., Siripatanadilok, S., 2011. Longevity, fecundity and development time of eucalyptus gall wasp, Leptocybe invasa Fisher &amp; La Salle (Hymenoptera: Eulophidae) in Kanchanaburi province, Thailand. Thaiagj 44, 155–163.</p>
+<p>Schnase, J.L., Carroll, M.L., Gill, R.L., Tamkin, G.S., Li, J., Strong, S.L., Maxwell, T.P., Aronne, M.E., Spradlin, C.S., 2021. Toward a Monte Carlo approach to selecting climate variables in MaxEnt. PLOS ONE 16, e0237208. <a class="reference external" href="https://doi.org/10.1371/journal.pone.0237208">https://doi.org/10.1371/journal.pone.0237208</a></p>
+<p>Tangang, F., Chung, J.X., Cruz, F., Supari, Santisirisomboon, J., Ngo-Duc, T., Juneng, L., Salimun, E., Narisma, G., Dado, J., Phan-Van, T., Mohd, M.S.F., Singhruck, P., McGregor, J.L., Aldrian, E., Gunawan, D., Spaheluwakan, A., 2022. CORDEX Southeast Asia: Providing Regional Climate Change Information for Enabling Adaptation, in: Unnikrishnan, A.S., Tangang, F., Durrheim, R.J. (Eds.), Extreme Natural Events: Sustainable Solutions for Developing Countries. Springer Nature, Singapore, pp. 3–21. <a class="reference external" href="https://doi.org/10.1007/978-981-19-2511-5_1">https://doi.org/10.1007/978-981-19-2511-5_1</a></p>
+<p>Thu, P.Q., Dell, B., Burgess, T.I., 2009. Susceptibility of 18 eucalypt species to the gall wasp Leptocybe invasa in the nursery and young plantations in Vietnam. Res. Artic. 35, 113–117. <a class="reference external" href="https://doi.org/10.2306/scienceasia1513-1874.2009.35.113">https://doi.org/10.2306/scienceasia1513-1874.2009.35.113</a></p>
+<p>Zheng, X.-L., Li, J., Yang, Z., Xian, Z.-H., Wei, J.G., Lei, C.L., Wang, X.-P., Lu, W., 2014a. A review of invasive biology, prevalence and management of Leptocybe invasa Fisher &amp; La Salle (Hymenoptera: Eulophidae: Tetrastichinae). ResearchGate 22, 68–79. <a class="reference external" href="https://doi.org/10.4001/003.022.0133">https://doi.org/10.4001/003.022.0133</a></p>
+<p>Zheng, X.-L., Yang, Z., Li, J., Xian, Z.-H., Yang, J., Liu, J., Su, S., Wang, X.L., Lu, W, 2014b. Rapid identification of both sexes of Leptocybe invasa Fisher &amp; La Salle (Hymenoptera: Eulophidae: Tetrastichinae): a morphological perspective. ResearchGate 22, 643–650. https://
+<a class="reference external" href="http://doi.org/10.4001/003.022.0326">doi.org/10.4001/003.022.0326</a></p>
+<p>Zhu, F.-L., Ren, S.-X., Qiu, B.-L., Wu, J.-H., 2014. Effect of temperature on life table parameters of Leptocybe invasa (Hymenoptera: Eulophidae). Austral Entomology 54, 71–78. <a class="reference external" href="https://doi.org/0.1111/aen.12094">https://doi.org/0.1111/aen.12094</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "aciar"
+        },
+        kernelOptions: {
+            name: "aciar",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'aciar'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="leptocybe-invasa_point_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><em>Leptocybe invasa</em> case study</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Climate Futures Research Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
