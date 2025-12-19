@@ -53,7 +53,7 @@ ds.drop(['band','spatial_ref']).hvplot(x='x',y='y',geo=True,xlim=(89,147), ylim=
 /opt/anaconda3/envs/xclim/lib/python3.13/site-packages/pyproj/network.py:59: UserWarning: pyproj unable to set PROJ database path.
   _set_context_ca_bundle_path(ca_bundle_path)
 ----- stderr -----
-/tmp/ipykernel_2078219/3551305737.py:29: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+/tmp/ipykernel_2078899/3551305737.py:29: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
   ds.drop(['band','spatial_ref']).hvplot(x='x',y='y',geo=True,xlim=(89,147), ylim=(-15,28),width=800,height=500,cmap='plasma',xlabel='lon',tools=[hover],tiles=tiles_state)
 ------------------
 
