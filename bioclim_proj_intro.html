@@ -390,7 +390,56 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="projected-bioclimatic-variables">
 <h1>Projected bioclimatic variables<a class="headerlink" href="#projected-bioclimatic-variables" title="Permalink to this heading">#</a></h1>
-<p>This section contains the projected bioclimatic variables. The plots show the ensemble means for each variable (add more info here). Browse the variables using the menu on the left, or the next and previous buttons. Information on the variables can be found at <a class="reference external" href="https://www.worldclim.org/data/bioclim.html">https://www.worldclim.org/data/bioclim.html</a>.</p>
+<p>This section contains the projected bioclimatic variables, calculated from an ensemble of dynamically downscaled models from the Southeast Asia Regional Climate Downscaling/Coordinated Regional Climate Downscaling Experiment-Southeast Asia (CORDEX–SEA)(Tangang et al., 2022), shown in the table below. The ensemble data and projections underwent regridding from 0.22° x 0.22° to 0.1° x 0.1° to align with the ERA5-LAND grid, before undergoing Quantile Delta Mapping (Cannon et al., 2015), grouped by month and separated into 100 quantiles. Temperature variables underwent additive adjustment, while precipitation underwent multiplicative adjustment and frequency adaption to address dry day imbalances.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>General Circulation Model</p></th>
+<th class="head"><p>Regional Climate Model</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CNRM-CERFACS-CNRM-CM5</p></td>
+<td><p>SMHI-RCA4</p></td>
+</tr>
+<tr class="row-odd"><td><p>CNRM-CM5</p></td>
+<td><p>ICTP-RegCM4-3</p></td>
+</tr>
+<tr class="row-even"><td><p>IPSL-IPSL-CM5A-LR</p></td>
+<td><p>ICTP-RegCM4-3</p></td>
+</tr>
+<tr class="row-odd"><td><p>MOHC-HadGEM2-ES</p></td>
+<td><p>GERICS-REMO2015</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>ICTP-RegCM4-7</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>SMHI-RCA4</p></td>
+</tr>
+<tr class="row-even"><td><p>MPI-M-MPI-ESM-LR</p></td>
+<td><p>GERICS-REMO2015</p></td>
+</tr>
+<tr class="row-odd"><td><p>MPI-M-MPI-ESM-MR</p></td>
+<td><p>ICTP-RegCM4-3</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>ICTP-RegCM4-7</p></td>
+</tr>
+<tr class="row-odd"><td><p>NCC-NorESM1-M</p></td>
+<td><p>GERICS-REMO2015</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>ICTP-RegCM4-7</p></td>
+</tr>
+<tr class="row-odd"><td><p>NOAA-GFDL-GFDL-ESM2M</p></td>
+<td><p>ICTP-RegCM4-3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>References</strong> <br>
+Cannon, A.J., Sobie, S.R. and Murdock, T.Q., 2015. Bias correction of GCM precipitation by quantile mapping: how well do methods preserve changes in quantiles and extremes?. Journal of Climate, 28(17), pp.6938-6959.<br>
+Tangang, F., Chung, J.X., Cruz, F., Supari, Santisirisomboon, J., Ngo-Duc, T., Juneng, L., Salimun, E., Narisma, G., Dado, J. and Phan-Van, T., 2022. CORDEX southeast Asia: providing regional climate change information for enabling adaptation. In Extreme Natural Events: Sustainable Solutions for Developing Countries (pp. 3-21). Singapore: Springer Nature Singapore.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
